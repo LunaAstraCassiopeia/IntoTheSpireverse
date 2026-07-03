@@ -21,7 +21,7 @@ public sealed class EndOfCreation() : ShadowDefectCard(2, CardType.Attack, CardR
     {
         await DamageCmd
             .Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .WithHitFx("vfx/vfx_attack_slash")
             .TargetingAllOpponents(CombatState)
             .Execute(choiceContext);

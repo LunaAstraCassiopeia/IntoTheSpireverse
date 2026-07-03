@@ -25,7 +25,7 @@ public sealed class SprayNPray() : ShadowNecrobinderCard(1, CardType.Attack, Car
     {
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .WithHitCount(DynamicVars.Repeat.IntValue)
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .TargetingRandomOpponents(CombatState)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);

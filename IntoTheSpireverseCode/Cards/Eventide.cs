@@ -29,7 +29,7 @@ public sealed class Eventide() : ShadowDefectCard(1, CardType.Attack, CardRarity
         await DamageCmd
             .Attack(DynamicVars.Damage.BaseValue)
             .WithHitCount(DynamicVars.Repeat.IntValue)
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .WithHitFx("vfx/vfx_attack_slash")
             .TargetingRandomOpponents(CombatState)
             .Execute(choiceContext);

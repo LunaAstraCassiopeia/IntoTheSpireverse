@@ -44,7 +44,7 @@ public sealed class SludgeBomb : ShadowDefectCard
 
 		await CardPileCmd.RemoveFromCombat(voidCard);
 
-		await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this)
+		await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this, cardPlay)
 			.TargetingAllOpponents(base.CombatState)
 			.WithHitFx("vfx/vfx_attack_blunt", null, "blunt_attack.mp3")
 			.Execute(choiceContext);

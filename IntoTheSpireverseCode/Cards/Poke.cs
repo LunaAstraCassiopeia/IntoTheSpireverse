@@ -29,7 +29,7 @@ public sealed class Poke() : ShadowDefectCard(1, CardType.Skill, CardRarity.Comm
         // Deal 1 damage to all enemies
         await DamageCmd
             .Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);

@@ -20,8 +20,8 @@ public sealed class GrapplePower : ShadowPowerModel
         if (amount <= 0m || creature != Source) return;
         Flash();
         await CreatureCmd.Damage(
-            new BlockingPlayerChoiceContext(), Owner, (decimal)Amount,
-            ValueProp.Unpowered, Source, null);
+            new BlockingPlayerChoiceContext(), Owner, Amount,
+            ValueProp.Unpowered, Source, cardSource, null);
     }
 
     public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)

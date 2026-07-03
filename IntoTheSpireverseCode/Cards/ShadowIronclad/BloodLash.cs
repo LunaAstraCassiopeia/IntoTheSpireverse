@@ -37,7 +37,7 @@ public sealed class BloodLash() : ShadowIroncladCard(1, CardType.Attack, CardRar
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
 
         var damageResponse = await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);

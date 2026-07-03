@@ -22,7 +22,7 @@ public sealed class BladeWard() : ShadowSilentCard(2, CardType.Attack, CardRarit
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).WithHitCount(2).FromCard(this).Targeting(cardPlay.Target).Execute(choiceContext);
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).WithHitCount(2).FromCard(this, cardPlay).Targeting(cardPlay.Target).Execute(choiceContext);
     }
 
     public override async Task AfterCardDiscarded(PlayerChoiceContext choiceContext, CardModel card)

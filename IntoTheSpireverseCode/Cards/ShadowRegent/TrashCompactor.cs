@@ -29,7 +29,7 @@ public class TrashCompactor() : ShadowRegentCard(0,
 
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .WithHitCount(ResolveEnergyXValue())
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_giant_horizontal_slash", null, "slash_attack.mp3")
             .Execute(choiceContext);

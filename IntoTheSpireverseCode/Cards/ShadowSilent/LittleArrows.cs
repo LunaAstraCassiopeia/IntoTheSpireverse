@@ -22,7 +22,7 @@ public sealed class LittleArrows() : ShadowSilentCard(1, CardType.Attack, CardRa
             await DamageCmd
                 .Attack(DynamicVars.Damage.BaseValue)
                 .WithHitCount(statusCount)
-                .FromCard(this)
+                .FromCard(this, cardPlay)
                 .TargetingRandomOpponents(CombatState)
                 .Execute(choiceContext);
         }

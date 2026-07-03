@@ -29,13 +29,13 @@ public class KinglyKnee() : ShadowRegentCard(1,
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay cardPlay)
     {
-        if (CombatState == null) return;
+        ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
 
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
-            .Targeting(play.Target)
+            .FromCard(this, cardPlay)
+            .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
     }

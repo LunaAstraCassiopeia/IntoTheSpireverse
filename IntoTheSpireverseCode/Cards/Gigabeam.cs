@@ -27,7 +27,7 @@ public sealed class Gigabeam() : ShadowDefectCard(2, CardType.Attack, CardRarity
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .TargetingAllOpponents(CombatState)
             .WithAttackerAnim("Cast", 0.5f)
             .BeforeDamage(async () =>

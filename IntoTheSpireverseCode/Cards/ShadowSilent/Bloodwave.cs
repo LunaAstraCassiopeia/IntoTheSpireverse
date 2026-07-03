@@ -28,7 +28,7 @@ public sealed class Bloodwave() : ShadowSilentCard(2, CardType.Attack, CardRarit
         await DamageCmd
             .Attack(DynamicVars.Damage.BaseValue)
             .WithHitCount(DynamicVars.Repeat.IntValue+1)
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .TargetingAllOpponents(CombatState)
             .Execute(choiceContext);
     }

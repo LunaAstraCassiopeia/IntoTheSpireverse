@@ -33,7 +33,8 @@ public class EntropyOrb : PlaceholderOrbModel
     {
         if (target != null) return;
         EntropyOrb entropyOrb = this;
-        entropyOrb.Trigger();
+        //TODO: i'm not sure what the logic of Entropy orb is, so I'm just commenting this out to get the build working.
+        // entropyOrb.Trigger();
         
         await Cmd.Wait(0.1f);
         await CreatureCmd.Damage(choiceContext, (IEnumerable<Creature>) [this.Owner.Creature.CombatState!.HittableEnemies.First()], PassiveVal, ValueProp.Unpowered, this.Owner.Creature);

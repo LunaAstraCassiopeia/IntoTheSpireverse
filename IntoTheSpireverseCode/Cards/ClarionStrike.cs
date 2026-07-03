@@ -24,7 +24,7 @@ public sealed class ClarionStrike() : ShadowDefectCard(1, CardType.Attack, CardR
     {
         await DamageCmd
             .Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .Targeting(cardPlay.Target!)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);

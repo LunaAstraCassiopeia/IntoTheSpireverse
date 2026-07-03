@@ -42,7 +42,7 @@ public class Bellows : ShadowIroncladRelic
 
             if (existingPower != null && existingPower.InstanceType == PowerInstanceType.None) // Todo check this is the same
             {
-                DoHackyThingsForSpecificPowers(existingPower);
+                // DoHackyThingsForSpecificPowers(existingPower);
                 await PowerCmd.ModifyAmount(new ThrowingPlayerChoiceContext(),
                     existingPower, (decimal)debuff.Amount,
                     Owner.Creature, null);
@@ -50,7 +50,7 @@ public class Bellows : ShadowIroncladRelic
             else
             {
                 var power = (PowerModel)debuff.ClonePreservingMutability();
-                DoHackyThingsForSpecificPowers(power);
+                // DoHackyThingsForSpecificPowers(power);
                 await PowerCmd.Apply(new ThrowingPlayerChoiceContext(),
                     power, recipient, (decimal)debuff.Amount,
                     Owner.Creature, null);
@@ -58,9 +58,10 @@ public class Bellows : ShadowIroncladRelic
         }
     }
 
-    private static void DoHackyThingsForSpecificPowers(PowerModel power)
-    {
-        if (power is ITemporaryPower temporaryPower)
-            temporaryPower.IgnoreNextInstance();
-    }
+    //TODO: i'm not exactly sure what this did. But I'm removing it for now.
+    // private static void DoHackyThingsForSpecificPowers(PowerModel power)
+    // {
+    //     if (power is ITemporaryPower temporaryPower)
+    //         temporaryPower.IgnoreNextInstance();
+    // }
 }

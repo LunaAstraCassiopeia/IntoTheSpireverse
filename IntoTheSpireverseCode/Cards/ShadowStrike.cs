@@ -46,7 +46,7 @@ public sealed class ShadowStrike : ShadowDefectCard
 		{
 			await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue)
 				.WithHitCount(discarded)
-				.FromCard(this)
+				.FromCard(this, cardPlay)
 				.TargetingRandomOpponents(base.CombatState)
 				.WithHitFx("vfx/vfx_attack_slash")
 				.Execute(choiceContext);

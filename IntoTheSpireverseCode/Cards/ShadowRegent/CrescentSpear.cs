@@ -1,12 +1,12 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
+using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
-using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
-using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
@@ -24,22 +24,23 @@ public class CrescentSpear() : ShadowRegentCard(1,
     [
         new DamageVar(6, ValueProp.Move)
     ];
-    
-    
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo),
         HoverTipFactory.FromCard<UltimateStrike>(IsUpgraded)
     ];
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay cardPlay)
     {
-        if (CombatState == null) return;
+        ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
 
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
-            .Targeting(play.Target)
+            .FromCard(this, cardPlay)
+            .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_starry_impact", null, null)
             .Execute(choiceContext);
 

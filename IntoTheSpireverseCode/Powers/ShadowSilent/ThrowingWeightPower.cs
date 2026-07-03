@@ -23,7 +23,7 @@ public sealed class ThrowingWeightPower : CustomPowerModel
 
             Creature? target = Owner.Player.RunState.Rng.CombatTargets.NextItem(enemies);
             Flash();
-			await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), target, base.Amount, ValueProp.Unpowered, base.Owner, null);
+			await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), target, Amount, ValueProp.Unpowered, Owner);
         }
     }
 }

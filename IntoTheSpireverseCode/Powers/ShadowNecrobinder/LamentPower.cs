@@ -18,7 +18,9 @@ public class LamentPower : CustomPowerModel
         Decimal amount,
         ValueProp props,
         Creature? dealer,
-        CardModel? cardSource)
+        CardModel? cardSource,
+        CardPlay? cardPlay
+        )
     {
         if (cardSource == null || !cardSource.Tags.Contains(CardTag.Strike)) return 0m;
         if (dealer != Owner) return 0m;

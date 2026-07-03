@@ -27,7 +27,7 @@ public sealed class BladeCyclone() : ShadowSilentCard(1, CardType.Attack, CardRa
         {
             await DamageCmd
                 .Attack(DynamicVars.Damage.BaseValue)
-                .FromCard(this)
+                .FromCard(this, cardPlay)
                 .TargetingAllOpponents(CombatState)
                 .Execute(choiceContext);
         }

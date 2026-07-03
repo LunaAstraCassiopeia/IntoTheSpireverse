@@ -22,7 +22,7 @@ public sealed class CosmicWave() : ShadowDefectCard(1, CardType.Attack, CardRari
     {
         await DamageCmd
             .Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);

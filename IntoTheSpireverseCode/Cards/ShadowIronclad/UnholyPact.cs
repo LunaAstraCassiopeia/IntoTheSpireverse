@@ -35,7 +35,7 @@ public sealed class UnholyPact() : ShadowIroncladCard(1, CardType.Skill, CardRar
             cardPlay.Target, DynamicVars.Power<BloodbondPower>().BaseValue,
             Owner.Creature, this);
         await CreatureCmd.Damage(choiceContext, Owner.Creature, DynamicVars.HpLoss.BaseValue,
-            ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this);
+            ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this, cardPlay);
     }
 
     protected override void OnUpgrade() => DynamicVars.Power<BloodbondPower>().UpgradeValueBy(2m);

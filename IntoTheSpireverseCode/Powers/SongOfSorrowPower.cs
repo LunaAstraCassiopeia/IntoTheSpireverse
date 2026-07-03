@@ -16,17 +16,17 @@ public sealed class SongOfSorrowPower : CustomPowerModel
 
 	public override PowerStackType StackType => PowerStackType.Counter;
 
-	protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
-	{
+	protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+	[
 		HoverTipFactory.FromCard<Void>()
-	};
+	];
 
 	public override async Task AfterCardGeneratedForCombat(CardModel card, Player? creator)
 	{
 		if (creator == card.Owner && card is Void)
 		{
 			Flash();
-			await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), base.CombatState.HittableEnemies, base.Amount, ValueProp.Unblockable | ValueProp.Unpowered, base.Owner, null);
+			await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), CombatState.HittableEnemies, Amount, ValueProp.Unblockable | ValueProp.Unpowered, Owner);
 		}
 	}
 }

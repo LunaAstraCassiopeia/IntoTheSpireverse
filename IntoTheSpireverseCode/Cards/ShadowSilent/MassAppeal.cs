@@ -26,7 +26,7 @@ public sealed class MassAppeal() : ShadowSilentCard(1, CardType.Attack, CardRari
     {
         await DamageCmd
             .Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .TargetingAllOpponents(CombatState!)
             .Execute(choiceContext);
 

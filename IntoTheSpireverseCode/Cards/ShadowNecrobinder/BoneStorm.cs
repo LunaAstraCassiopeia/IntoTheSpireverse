@@ -26,7 +26,7 @@ public sealed class BoneStorm() : ShadowNecrobinderCard(3, CardType.Attack, Card
     {
         await DamageCmd.Attack(DynamicVars.CalculatedDamage)
             .WithHitCount(2)
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .TargetingAllOpponents(CombatState)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);

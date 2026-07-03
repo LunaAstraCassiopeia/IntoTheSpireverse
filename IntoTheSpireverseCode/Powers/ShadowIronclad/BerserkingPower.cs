@@ -33,7 +33,7 @@ public sealed class BerserkingPower : ShadowPowerModel
         Flash();
 
         DamageVar selfDamage = (DamageVar)DynamicVars[SelfDamageKey];
-        await CreatureCmd.Damage(choiceContext, Owner, selfDamage.BaseValue, selfDamage.Props, Owner, (CardModel?)null);
+        await CreatureCmd.Damage(choiceContext, Owner, selfDamage.BaseValue, selfDamage.Props, Owner);
         await PlayerCmd.GainEnergy((decimal)Amount, Owner.Player);
     }
 

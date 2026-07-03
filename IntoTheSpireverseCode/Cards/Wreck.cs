@@ -18,7 +18,7 @@ public sealed class Wreck() : ShadowDefectCard(3, CardType.Attack, CardRarity.Un
     {
         await DamageCmd
             .Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);

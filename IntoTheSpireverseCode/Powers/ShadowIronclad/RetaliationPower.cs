@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using IntoTheSpireverse.IntoTheSpireverseCode.Relics.ShadowIronclad;
+using MegaCrit.Sts2.Core.Entities.Cards;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowIronclad;
 
@@ -22,11 +23,11 @@ public sealed class RetaliationPower : ShadowPowerModel
         DamageResult _,
         ValueProp props,
         Creature? dealer,
-        CardModel? __)
+        CardModel? cardSource)
     {
         if (target != Owner || dealer == null || !props.IsPoweredAttack())
             return;
-        await CreatureCmd.Damage(choiceContext, dealer, (decimal)Amount, ValueProp.Unpowered, Owner, (CardModel?)null);
+        await CreatureCmd.Damage(choiceContext, dealer, Amount, ValueProp.Unpowered, Owner, cardSource, null);
     }
 
     public override decimal ModifyDamageAdditive(
@@ -34,7 +35,8 @@ public sealed class RetaliationPower : ShadowPowerModel
         decimal amount,
         ValueProp props,
         Creature? dealer,
-        CardModel? cardSource)
+        CardModel? cardSource,
+        CardPlay? cardPlay)
     {
         if (target != Owner || !props.IsPoweredAttack()) return 0m;
 

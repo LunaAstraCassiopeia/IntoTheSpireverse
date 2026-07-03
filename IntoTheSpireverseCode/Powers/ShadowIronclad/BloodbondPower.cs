@@ -33,7 +33,7 @@ public class BloodbondPower : ShadowPowerModel
 
         Flash();
         await CreatureCmd.Damage(choiceContext, Owner, Amount,
-            ValueProp.Unblockable | ValueProp.Unpowered, target, null);
+            ValueProp.Unblockable | ValueProp.Unpowered, target);
 
         var relic = target.Player?.Relics.OfType<Buckler>().FirstOrDefault();
         if (relic != null)

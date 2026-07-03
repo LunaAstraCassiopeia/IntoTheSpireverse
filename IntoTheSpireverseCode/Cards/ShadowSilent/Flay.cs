@@ -27,7 +27,7 @@ public sealed class Flay() : ShadowSilentCard(1, CardType.Attack, CardRarity.Rar
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target).Execute(choiceContext);
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).Targeting(cardPlay.Target).Execute(choiceContext);
 
         bool hasWeak = cardPlay.Target.HasPower<WeakPower>();
         bool hasBled = cardPlay.Target.HasPower<BleedPower>();

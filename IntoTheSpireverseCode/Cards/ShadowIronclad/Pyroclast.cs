@@ -30,7 +30,7 @@ public sealed class Pyroclast() : ShadowIroncladCard(0, CardType.Skill, CardRari
         {
             VfxCmd.PlayOnCreatureCenter(Owner.Creature, "vfx/vfx_bloody_impact");
             await CreatureCmd.Damage(choiceContext, Owner.Creature, slateAmount,
-                ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this);
+                ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this, cardPlay);
             await PlayerCmd.GainEnergy(slateAmount, Owner);
         }
     }

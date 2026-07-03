@@ -24,11 +24,12 @@ public class TrickyStrike() : ShadowRegentCard(1,
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay cardPlay)
     {
+        ArgumentNullException.ThrowIfNull(cardPlay.Target);
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
-            .Targeting(play.Target)
+            .FromCard(this, cardPlay)
+            .Targeting(cardPlay.Target)
             .WithHitCount(DynamicVars.Repeat.IntValue)
             .WithHitFx("vfx/vfx_starry_impact", null, "blunt_attack.mp3")
             .Execute(choiceContext);

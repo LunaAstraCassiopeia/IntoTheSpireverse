@@ -16,7 +16,7 @@ public sealed class Encore() : ShadowSilentCard(4, CardType.Attack, CardRarity.R
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target).Execute(choiceContext);
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).Targeting(cardPlay.Target).Execute(choiceContext);
     }
 
     public override Task AfterCardDiscarded(PlayerChoiceContext choiceContext, CardModel card)

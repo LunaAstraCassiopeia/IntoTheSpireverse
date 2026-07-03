@@ -25,7 +25,7 @@ public sealed class Carom() : ShadowSilentCard(1, CardType.Attack, CardRarity.Co
         await IntoTheSpireverseKeywords.ExecuteDevious(choiceContext, Owner, this, () =>
             DamageCmd
                 .Attack(DynamicVars.Damage.BaseValue)
-                .FromCard(this)
+                .FromCard(this, cardPlay)
                 .TargetingRandomOpponents(CombatState)
                 .Execute(choiceContext));
     }

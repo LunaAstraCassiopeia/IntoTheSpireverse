@@ -28,7 +28,7 @@ public sealed class SanguineScrying() : ShadowSilentCard(1, CardType.Attack, Car
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target).Execute(choiceContext);
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).Targeting(cardPlay.Target).Execute(choiceContext);
 
         if (cardPlay.Target.HasPower<WeakPower>())
         {

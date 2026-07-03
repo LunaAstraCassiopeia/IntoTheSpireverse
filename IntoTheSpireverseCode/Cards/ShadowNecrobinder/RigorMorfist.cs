@@ -24,7 +24,7 @@ public sealed class RigorMorfist() : ShadowNecrobinderCard(1, CardType.Attack, C
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_molten_fist", tmpSfx: "blunt_attack.mp3")
             .Execute(choiceContext);

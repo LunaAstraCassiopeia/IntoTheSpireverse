@@ -22,7 +22,7 @@ public sealed class RipAndTear() : ShadowDefectCard(2, CardType.Attack, CardRari
         await DamageCmd
             .Attack(DynamicVars.Damage.BaseValue)
             .WithHitCount(3)
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .WithHitFx("vfx/vfx_attack_slash")
             .TargetingRandomOpponents(CombatState)
             .Execute(choiceContext);

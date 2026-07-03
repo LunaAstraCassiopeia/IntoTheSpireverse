@@ -26,7 +26,7 @@ public sealed class TheEndIsComing() : ShadowNecrobinderCard(1, CardType.Attack,
         if (_timesPlayed >= 3)
         {
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-                .FromCard(this)
+                .FromCard(this, cardPlay)
                 .TargetingAllOpponents(CombatState)
                 .WithHitFx("vfx/vfx_giant_horizontal_slash")
                 .Execute(choiceContext);

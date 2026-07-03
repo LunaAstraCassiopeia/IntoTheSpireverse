@@ -21,9 +21,9 @@ public sealed class Dismember() : ShadowIroncladCard(2, CardType.Attack, CardRar
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
         await CreatureCmd.Damage(choiceContext, Owner.Creature,
-            DynamicVars.HpLoss.BaseValue, ValueProp.Unblockable | ValueProp.Unpowered, this);
+            DynamicVars.HpLoss.BaseValue, ValueProp.Unblockable | ValueProp.Unpowered, this, cardPlay);
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);

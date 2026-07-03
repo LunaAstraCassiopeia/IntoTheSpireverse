@@ -20,7 +20,7 @@ public class InfectedShotPower : CustomPowerModel
         if (card is not Void) return;
         
         var power = this;
-        await CreatureCmd.Damage(choiceContext, power.Owner, (Decimal) power.Amount, ValueProp.Unblockable | ValueProp.Unpowered, (Creature) null, (CardModel) null);
+        await CreatureCmd.Damage(choiceContext, power.Owner, power.Amount, ValueProp.Unblockable | ValueProp.Unpowered, Owner);
         await PowerCmd.Remove<InfectedShotPower>(power.Owner);
     }
 }

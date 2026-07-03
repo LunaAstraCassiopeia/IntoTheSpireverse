@@ -26,7 +26,7 @@ public sealed class FlubberFling() : ShadowSilentCard(2, CardType.Attack, CardRa
         await DamageCmd
             .Attack(DynamicVars.Damage.BaseValue)
             .WithHitCount(DynamicVars.Repeat.IntValue)
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .TargetingRandomOpponents(CombatState)
             .Execute(choiceContext);
 

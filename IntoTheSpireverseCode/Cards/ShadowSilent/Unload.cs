@@ -15,7 +15,7 @@ public sealed class Unload() : ShadowSilentCard(1, CardType.Attack, CardRarity.R
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target).Execute(choiceContext);
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).Targeting(cardPlay.Target).Execute(choiceContext);
 
         var nonAttackCards = PileType.Hand.GetPile(Owner).Cards.Where((c) => c.Type != CardType.Attack);
 

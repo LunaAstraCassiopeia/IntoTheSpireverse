@@ -24,6 +24,6 @@ public class YourDoomIsNighPower : CustomPowerModel
         var enemies = CombatState.HittableEnemies;
         if (enemies.Count == 0) return;
         var target = Owner.Player.RunState.Rng.CombatTargets.NextItem(enemies);
-        await CreatureCmd.Damage(choiceContext, [target], Amount, ValueProp.Unblockable | ValueProp.Unpowered, Owner, null);
+        await CreatureCmd.Damage(choiceContext, [target], Amount, ValueProp.Unblockable | ValueProp.Unpowered, Owner);
     }
 }
