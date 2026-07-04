@@ -8,11 +8,16 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowSilent;
 
-public sealed class Carom() : ShadowSilentCard(1, CardType.Attack, CardRarity.Common, TargetType.None)
+public sealed class ZigZag() : ShadowSilentCard(1, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(6m, ValueProp.Move),
+        new DamageVar(5m, ValueProp.Move),
+    ];
+    
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+    [
+        IntoTheSpireverseKeywords.Devious,
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -23,12 +28,12 @@ public sealed class Carom() : ShadowSilentCard(1, CardType.Attack, CardRarity.Co
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await IntoTheSpireverseKeywords.ExecuteDevious(choiceContext, Owner, this, () =>
-            DamageCmd
-                .Attack(DynamicVars.Damage.BaseValue)
+            DamageCmd.Attack(DynamicVars.Damage.BaseValue)
                 .FromCard(this, cardPlay)
-                .TargetingRandomOpponents(CombatState)
+                .TargetingAllOpponents(CombatState)
+                .WithHitFx("vfx/vfx_attack_slash")
                 .Execute(choiceContext));
-    }
+	}
 
     protected override void OnUpgrade()
     {
