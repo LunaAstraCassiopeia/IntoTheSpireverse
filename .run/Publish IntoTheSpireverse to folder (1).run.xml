@@ -1,0 +1,10 @@
+﻿<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Publish IntoTheSpireverse to folder (1)" type="DotNetFolderPublish" factoryName="Publish to folder">
+    <riderPublish configuration="ExportRelease" platform="Any CPU" target_folder="$PROJECT_DIR$/../../../../Program Files (x86)/Steam/steamapps/common/Slay the Spire 2/mods/IntoTheSpireverse" target_framework="net9.0" uuid_high="28208693799176981" uuid_low="-8664585396385347201">
+      <runtimes>
+        <item value="Portable" />
+      </runtimes>
+    </riderPublish>
+    <method v="2" />
+  </configuration>
+</component>
