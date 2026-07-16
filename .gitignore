@@ -11,3 +11,5 @@ packages/
 *cs.uid
 *.user
 .run/
+
+Directory.Build.props
