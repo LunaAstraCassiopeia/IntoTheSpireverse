@@ -13,7 +13,7 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Relics.ShadowRegent;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless;
 
 [Pool(typeof(TokenCardPool))]
-public class Warp() : CustomCardModel(0,
+public class Warp() : ShadowColorlessCard(0,
     CardType.Skill,
     CardRarity.Token,
     TargetType.Self)

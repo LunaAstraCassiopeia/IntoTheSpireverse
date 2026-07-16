@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless;
 
 [Pool(typeof(TokenCardPool))]
-public class Trip() : CustomCardModel(0,
+public class Trip() : ShadowColorlessCard(0,
     CardType.Skill,
     CardRarity.Token,
     TargetType.AnyEnemy)

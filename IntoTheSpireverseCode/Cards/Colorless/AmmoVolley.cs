@@ -12,11 +12,10 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless;
 /// Never actually added to any pile and never played.
 /// </summary>
 [Pool(typeof(TokenCardPool))]
-public class AmmoVolley() : CustomCardModel(1,
+public class AmmoVolley() : ShadowColorlessCard(1,
     CardType.Attack,
     CardRarity.Token,
-    TargetType.RandomEnemy,
-    false)
+    TargetType.RandomEnemy)
 {
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
