@@ -1,8 +1,12 @@
-﻿using BaseLib.Utils;
+using BaseLib.Utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.Ammo;
 using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
-using IntoTheSpireverse.IntoTheSpireverseCode.utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.Powers;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -17,7 +21,7 @@ public class LoadTheCannon() : ShadowRegentCard(1,
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("LoadAmmo", 1),
+        new LoadAmmoVar(1),
         new DamageVar(3, ValueProp.Move)
     ];
 
@@ -34,12 +38,34 @@ public class LoadTheCannon() : ShadowRegentCard(1,
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
-        
-        await LoadAmmoCmd.LoadAmmo(DynamicVars["LoadAmmo"].BaseValue, Owner, this);
+
+        await PowerCmd.Apply<TargetedPower>(
+            new ThrowingPlayerChoiceContext(),
+            cardPlay.Target,
+            1,
+            Owner.Creature,
+            this);
+
+        await LoadAmmoCmd.LoadAmmo(DynamicVars.LoadAmmo.BaseValue, Owner, this);
     }
 
     protected override void OnUpgrade()
     {
         DynamicVars.Damage.UpgradeValueBy(3);
+    }
+}
+
+public class TargetedPower : ShadowPowerModel
+{
+    public override PowerType Type => PowerType.Debuff;
+    public override PowerStackType StackType => PowerStackType.Single;
+
+    public async override Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side,
+        IEnumerable<Creature> participants)
+    {
+        if (side != Owner.Side)
+        {
+            await PowerCmd.Remove(this);
+        }
     }
 }

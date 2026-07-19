@@ -14,25 +14,46 @@ public class HeartOfStone : ShadowIroncladRelic
 {
     public override RelicRarity Rarity => RelicRarity.Starter;
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new HealVar(8)];
+    private const string _absorbKey = "Absorb";
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar(_absorbKey, 8)];
 
     public override RelicModel? GetUpgradeReplacement() => ModelDb.Relic<HeartOfTheMountain>();
 
-    private int _healedThisCombat;
-
-    private int HealedThisCombat
+    private int _absorbedThisCombat;
+    private int AbsorbedThisCombat
     {
-        get { return _healedThisCombat; }
+        get => _absorbedThisCombat;
         set
         {
-            _healedThisCombat = value;
+            _absorbedThisCombat = value;
             UpdateDisplay();
         }
     }
 
-    public override int DisplayAmount => DynamicVars.Heal.IntValue - HealedThisCombat;
+    private int _hpBeforeHpLoss;
+    private int _finalUnblockedDamage;
+
+    private int RemainingAbsorbAmount => DynamicVars[_absorbKey].IntValue - AbsorbedThisCombat;
+    private int EffectiveHp => _hpBeforeHpLoss + RemainingAbsorbAmount;
+
+    public override int DisplayAmount => RemainingAbsorbAmount;
 
     public override bool ShowCounter => CombatManager.Instance.IsInProgress && DisplayAmount > 0;
+
+    public override decimal ModifyHpLostAfterOstyLate(
+        Creature target,
+        decimal amount,
+        ValueProp props,
+        Creature? dealer,
+        CardModel? cardSource)
+    {
+        if (target == Owner.Creature)
+        {
+            _hpBeforeHpLoss = target.CurrentHp;
+            _finalUnblockedDamage = (int)amount;
+        }
+        return amount;
+    }
 
     public override async Task AfterDamageReceived(
         PlayerChoiceContext choiceContext,
@@ -42,15 +63,35 @@ public class HeartOfStone : ShadowIroncladRelic
         Creature? dealer,
         CardModel? cardSource)
     {
-        if (HealedThisCombat >= DynamicVars.Heal.IntValue || target != Owner.Creature || result.UnblockedDamage <= 0)
+        if (!CombatManager.Instance.IsInProgress || target != Owner.Creature || RemainingAbsorbAmount <= 0 || result.UnblockedDamage <= 0)
             return;
 
-        Flash();
-        var healAmount = Math.Clamp(result.UnblockedDamage, 0, DynamicVars.Heal.IntValue - HealedThisCombat);
-        await CreatureCmd.Heal(target, healAmount, false);
-        HealedThisCombat += healAmount;
+        int absorbed = Math.Min(result.UnblockedDamage, RemainingAbsorbAmount);
 
-        UpdateDisplay();
+        Flash();
+        await CreatureCmd.Heal(target, absorbed, false);
+        AbsorbedThisCombat += absorbed;
+    }
+
+    public override bool ShouldDieLate(Creature creature)
+    {
+        if (!CombatManager.Instance.IsInProgress || creature != Owner.Creature) return true;
+
+        return _finalUnblockedDamage >= EffectiveHp;
+    }
+
+    public override async Task AfterPreventingDeath(Creature creature)
+    {
+        if (!CombatManager.Instance.IsInProgress || creature != Owner.Creature) return;
+
+        int absorbed = Math.Min(_finalUnblockedDamage, RemainingAbsorbAmount);
+
+        int postDamageHp = _hpBeforeHpLoss - _finalUnblockedDamage + absorbed;
+
+        Flash();
+        await CreatureCmd.Heal(creature, postDamageHp);
+
+        AbsorbedThisCombat += absorbed;
     }
 
     public override Task BeforeCombatStart()
@@ -61,14 +102,14 @@ public class HeartOfStone : ShadowIroncladRelic
 
     public override Task AfterCombatEnd(CombatRoom _)
     {
-        HealedThisCombat = 0;
+        AbsorbedThisCombat = 0;
         Status = RelicStatus.Normal;
         return Task.CompletedTask;
     }
 
     private void UpdateDisplay()
     {
-        Status = HealedThisCombat >= DynamicVars.Heal.IntValue ? RelicStatus.Disabled : RelicStatus.Normal;
+        Status = RemainingAbsorbAmount <= 0 ? RelicStatus.Disabled : RelicStatus.Normal;
         InvokeDisplayAmountChanged();
     }
 }
