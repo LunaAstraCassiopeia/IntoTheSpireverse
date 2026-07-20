@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Saves.Runs;
 using IntoTheSpireverse.IntoTheSpireverseCode.Cards;
 using IntoTheSpireverse.IntoTheSpireverseCode.Config;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent;
 using MegaCrit.Sts2.Core.Multiplayer.Serialization;
 
 namespace IntoTheSpireverse;

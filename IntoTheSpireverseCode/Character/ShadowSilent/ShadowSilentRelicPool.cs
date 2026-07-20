@@ -7,8 +7,8 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character;
 
 public class ShadowSilentRelicPool : CustomRelicPoolModel
 {
-    public override string EnergyColorName => ShadowSilent.CharacterId;
-    public override Color LabOutlineColor => ShadowSilent.Color;
+    public override string EnergyColorName => ShadowSilent.ShadowSilent.CharacterId;
+    public override Color LabOutlineColor => ShadowSilent.ShadowSilent.Color;
     
     
     protected override IEnumerable<RelicModel> GenerateAllRelics()

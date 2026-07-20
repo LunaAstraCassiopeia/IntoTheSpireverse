@@ -1,15 +1,17 @@
 ﻿using BaseLib.Abstracts;
 using Godot;
-using MegaCrit.Sts2.Core.Entities.Characters;
-using MegaCrit.Sts2.Core.Helpers;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Characters;
 using IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowSilent;
 using IntoTheSpireverse.IntoTheSpireverseCode.Config;
 using IntoTheSpireverse.IntoTheSpireverseCode.Extensions;
 using IntoTheSpireverse.IntoTheSpireverseCode.Relics;
+using MegaCrit.Sts2.Core.Assets;
+using MegaCrit.Sts2.Core.Entities.Characters;
+using MegaCrit.Sts2.Core.Helpers;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Characters;
+using MegaCrit.Sts2.Core.Nodes.Animation;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Character;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent;
 
 public class ShadowSilent : PlaceholderCharacterModel, IAltCharacter, IIntoTheSpireverseDebug
 {
@@ -75,4 +77,5 @@ public class ShadowSilent : PlaceholderCharacterModel, IAltCharacter, IIntoTheSp
     public override string CustomMerchantAnimPath => "res://IntoTheSpireverse/scenes/merchant/shadowsilent_merchant.tscn";
     public override string CustomCharacterSelectBg => "res://IntoTheSpireverse/scenes/screens/char_select/shadowsilent.tscn";
     public override string CustomRestSiteAnimPath => "res://IntoTheSpireverse/scenes/rest_site/shadowsilent_rest_site.tscn";
+    public ShadowSilent() => PreloadManager.Cache.GetScene("res://IntoTheSpireverse/scenes/screens/char_select/shadowsilent.tscn").Instantiate<NSpineAutoPlayer>();
 }
