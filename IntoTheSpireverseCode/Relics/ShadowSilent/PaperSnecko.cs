@@ -18,7 +18,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Relics;
 
-public class PoisonRelic : ShadowSilentRelic
+public class PaperSnecko : ShadowSilentRelic
 {
     public override RelicRarity Rarity => RelicRarity.Rare;
     

@@ -14,7 +14,7 @@ using MegaCrit.Sts2.Core.Rooms;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Relics;
 
-public class OvercostRelic : ShadowSilentRelic, IOvercostListener, IBeforeEnergySpentListener
+public class SistersCrown : ShadowSilentRelic, IOvercostListener, IBeforeEnergySpentListener
 {
     public override RelicRarity Rarity => RelicRarity.Rare;
     

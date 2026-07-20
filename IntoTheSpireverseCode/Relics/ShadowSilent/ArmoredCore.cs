@@ -18,7 +18,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Relics;
 
-public class RetaliationScaleRelic : ShadowSilentRelic
+public class ArmoredCore : ShadowSilentRelic
 {
     public override RelicRarity Rarity => RelicRarity.Rare;
     
