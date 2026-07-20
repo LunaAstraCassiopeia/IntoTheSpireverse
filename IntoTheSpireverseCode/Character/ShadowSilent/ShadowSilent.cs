@@ -77,5 +77,4 @@ public class ShadowSilent : PlaceholderCharacterModel, IAltCharacter, IIntoTheSp
     public override string CustomMerchantAnimPath => "res://IntoTheSpireverse/scenes/merchant/shadowsilent_merchant.tscn";
     public override string CustomCharacterSelectBg => "res://IntoTheSpireverse/scenes/screens/char_select/shadowsilent.tscn";
     public override string CustomRestSiteAnimPath => "res://IntoTheSpireverse/scenes/rest_site/shadowsilent_rest_site.tscn";
-    public ShadowSilent() => PreloadManager.Cache.GetScene("res://IntoTheSpireverse/scenes/screens/char_select/shadowsilent.tscn").Instantiate<NSpineAutoPlayer>();
 }
