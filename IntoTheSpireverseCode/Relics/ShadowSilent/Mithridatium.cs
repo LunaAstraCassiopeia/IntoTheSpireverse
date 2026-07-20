@@ -13,7 +13,7 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Relics;
 
-public class PermaMuddleRelic : ShadowSilentRelic, IntoTheSpireverseKeywords.IShouldPermanentMuddleListener, IntoTheSpireverseKeywords.ICardMuddledListener
+public class Mithridatium : ShadowSilentRelic, IntoTheSpireverseKeywords.IShouldPermanentMuddleListener, IntoTheSpireverseKeywords.ICardMuddledListener
 {
     public override RelicRarity Rarity => RelicRarity.Shop;
 
