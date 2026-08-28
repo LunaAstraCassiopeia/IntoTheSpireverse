@@ -47,7 +47,7 @@ public sealed class Haymaker() : ShadowSilentCard(1, CardType.Attack, CardRarity
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(6m);
+        DynamicVars.Damage.UpgradeValueBy(4m);
         DynamicVars.Weak.UpgradeValueBy(1m);
     }
 }

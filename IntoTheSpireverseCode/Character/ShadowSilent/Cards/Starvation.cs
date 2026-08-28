@@ -13,7 +13,7 @@ public sealed class Starvation() : ShadowSilentCard(2, CardType.Attack, CardRari
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(11m, ValueProp.Move),
+        new DamageVar(10m, ValueProp.Move),
     ];
     
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
@@ -43,6 +43,6 @@ public sealed class Starvation() : ShadowSilentCard(2, CardType.Attack, CardRari
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(4m);
+        DynamicVars.Damage.UpgradeValueBy(2m);
     }
 }

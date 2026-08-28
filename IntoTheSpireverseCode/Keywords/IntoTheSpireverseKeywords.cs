@@ -82,7 +82,7 @@ public static class IntoTheSpireverseKeywords
             null,
             source));
 
-        int repeats = 0;
+        int repeats = 1;
         foreach (CardModel card in cards)
         {
             if (card.Owner.Creature.CombatState == null) return;
