@@ -15,7 +15,7 @@ public sealed class Haymaker() : ShadowSilentCard(1, CardType.Attack, CardRarity
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(12m, ValueProp.Move),
+        new DamageVar(13m, ValueProp.Move),
         new PowerVar<WeakPower>(2m),
     ];
 
@@ -47,7 +47,7 @@ public sealed class Haymaker() : ShadowSilentCard(1, CardType.Attack, CardRarity
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(6m);
+        DynamicVars.Damage.UpgradeValueBy(5m);
         DynamicVars.Weak.UpgradeValueBy(1m);
     }
 }

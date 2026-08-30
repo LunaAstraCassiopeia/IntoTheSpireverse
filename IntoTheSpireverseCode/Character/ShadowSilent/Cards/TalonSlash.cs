@@ -13,7 +13,7 @@ public sealed class TalonSlash() : ShadowSilentCard(2, CardType.Attack, CardRari
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(8m, ValueProp.Move),
+        new DamageVar(10m, ValueProp.Move),
     ];
     
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
